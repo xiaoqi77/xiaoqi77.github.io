@@ -4,14 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Notepad++启动时提示load langs xml failed错误解决 | xiaoqi‘s Blog</title>
+    <title>jQuery动态添加树形结构菜单 Demo | xiaoqi‘s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="xiaoqi">
     
-    <meta name="description" content="问题描述：
-我的Notepad++在一次崩溃后每一次启动的时候就提示load langs xml failed，然后不能自动加载语法高亮文件。到Notepad++的安装目录查看langs.xml文件，发现该文件是空的(0kb)/或者文件内容相对langs.model.xml文件较少
-解决方案：">
+    <meta name="description" content="效果图如下：
+源代码：
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
+    &amp;lt;title&amp;gt;动态添加树形菜单&amp;l">
     
     
     
@@ -67,15 +71,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/16/NotepadUse/" title="Notepad++启动时提示load langs xml failed错误解决" itemprop="url">Notepad++启动时提示load langs xml failed错误解决</a>
+      <a href="/2016/03/24/jqAddDynaminMenu/" title="jQuery动态添加树形结构菜单 Demo" itemprop="url">jQuery动态添加树形结构菜单 Demo</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="xiaoqi">xiaoqi</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-03-16T07:53:48.000Z" itemprop="datePublished">2016-03-16 15:53:48</time>
-    更新日期:<time datetime="2016-03-16T08:00:53.453Z" itemprop="dateModified">2016-03-16 16:00:53</time>
+    <time datetime="2016-03-24T01:55:13.000Z" itemprop="datePublished">2016-03-24 09:55:13</time>
+    更新日期:<time datetime="2016-03-24T07:56:04.711Z" itemprop="dateModified">2016-03-24 15:56:04</time>
     
   </p>
 </header>
@@ -87,11 +91,134 @@
 		
 		</div>
 		
-		<p>问题描述：</p>
-<p>我的Notepad++在一次崩溃后每一次启动的时候就提示load langs xml failed，然后不能自动加载语法高亮文件。<br>到Notepad++的安装目录查看langs.xml文件，发现该文件是空的(0kb)/或者文件内容相对langs.model.xml文件较少</p>
-<p>解决方案：<br><a id="more"></a></p>
-<p>很简单，就是将同目录下的langs.model.xml复制一份后放到langs.xml文件里面即可.再启动Notepad++.<br>希望这个方案对其他也碰到这个问题的人能有帮助</p>
-  
+		<p>效果图如下：<br><img src="menuList.png" alt="效果"></p>
+<p>源代码：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;动态添加树形菜单&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../jquery.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    .orgMenu ul,.orgMenu li{
+        list-style:none;
+        font-size:14px;
+        margin:0;
+        padding-left:6px;
+        line-height: 30px;
+        color: black;
+    }
+    .child{
+        display:none;
+    }
+    .orgMenu a{
+        display:inline;
+        /*color:black;//#5c84c1;*/
+        padding-left:12px;
+    }
+    .orgMenu li.active{
+        position: relative;
+        background: url(libg.png) no-repeat;
+        /*line-height: 30px;*/
+        color: #fff;
+    }
+    .orgMenu .active&gt;a:first-child{
+        color: #fff;
+    }
+    .orgMenu .treeMenu img{
+        padding: 0px 2px 0px 2px;
+        position: relative;
+        top: 3px;
+    }
+&lt;/style&gt;
+&lt;!--more--&gt;
+&lt;script&gt;
+    $(function () {
+        var menuList = [&quot;菜单0&quot;,&quot;菜单1&quot;,&quot;菜单2&quot;];
+        function addMenu(orgId){
+            if(orgId != &quot;orgMenu&quot;){
+                for(var i in menuList){
+                    var idOrName = orgId+i;
+                    var  liStr = &quot;&lt;li id=&apos;&quot;+idOrName+&quot;&apos;&gt;&lt;a href=&apos;#&apos; class=&apos;treeMenu&apos;&gt;&quot;+idOrName+&quot;&lt;/a&gt;&lt;/li&gt;&quot;;
+                    $(liStr).appendTo($(&quot;#&quot;+orgId+&quot; ul:first&quot;));
+                    $(document).on(&quot;click&quot;,&quot;#&quot;+idOrName+&quot; a:first&quot;, function () {
+                        var liId = $(this).parent().attr(&quot;id&quot;);
+                        if($(&quot;#&quot;+liId).find(&quot;ul li&quot;).length == 0){
+                            addMenu(liId);
+                        }
+                    });
+                    var ulStr = &quot;&lt;ul class=&apos;child&apos;&gt;&lt;/ul&gt;&quot;;
+                    $(ulStr).appendTo($(&quot;#&quot;+idOrName));
+                    clickEvent(idOrName,&quot;orgMenu&quot;);
+                }
+            }else{
+                for(var i in menuList){
+                    var  liStr = &quot;&lt;li id=&apos;&quot;+menuList[i]+&quot;&apos;&gt;&lt;a href=&apos;#&apos; class=&apos;treeMenu&apos;&gt;&quot;+menuList[i]+&quot;&lt;/a&gt;&lt;/li&gt;&quot;;
+                    $(liStr).appendTo($(&quot;#&quot;+orgId+&quot; ul:first&quot;));
+                    $(document).on(&quot;click&quot;,&quot;#&quot;+menuList[i]+&quot; a:first&quot;, function () {
+                        var liId = $(this).parent().attr(&quot;id&quot;);
+                        if($(&quot;#&quot;+liId).find(&quot;ul li&quot;).length == 0){
+                            addMenu(liId);
+                        }
+                    });
+                    var ulStr = &quot;&lt;ul class=&apos;child&apos;&gt;&lt;/ul&gt;&quot;;
+                    $(ulStr).appendTo($(&quot;#&quot;+menuList[i]));
+                    clickEvent(menuList[i],&quot;orgMenu&quot;);
+                }
+            }
+        }
+        addMenu(&quot;orgMenu&quot;);
+        clickEvent(&quot;orgMenu&quot;,&quot;orgMenu&quot;);
+        //添加click事件
+        function clickEvent(liId,menuClass){
+            $(&quot;#&quot;+liId).not(&quot;:has(ul)&quot;).children(&quot;a&quot;).css({textDecoration:&quot;none&quot;,background:&quot;none&quot;})
+                    .click(function(){
+                        //.one(&quot;click&quot;,function(){
+                        $(&quot;.&quot;+menuClass+&quot; li&quot;).removeClass(&quot;active&quot;);
+                        $(this).parent(&quot;li&quot;).addClass(&quot;active&quot;);
+                    });
+            if($(&quot;#&quot;+liId).find(&quot;ul&quot;).length != 0){
+                $(&quot;#&quot;+liId).children(&quot;a:first&quot;).css({background:&quot;url(list.gif) no-repeat left center&quot;})
+                        .click(function(e){
+                            //.one(&quot;click&quot;,function(){
+                            $(&quot;.&quot;+menuClass+&quot; li&quot;).removeClass(&quot;active&quot;);
+                            $(this).parent(&quot;li&quot;).addClass(&quot;active&quot;);
+                            if($(this).next(&quot;ul&quot;).is(&quot;:hidden&quot;)){
+                                $(this).next(&quot;ul&quot;).slideDown(&quot;slow&quot;);
+                                if($(this).parent(&quot;li&quot;).siblings(&quot;li&quot;).children(&quot;ul&quot;).is(&quot;:visible&quot;)){
+                                    $(this).parent(&quot;li&quot;).siblings(&quot;li&quot;).find(&quot;ul&quot;).slideUp(&quot;1000&quot;);
+                                    $(this).parent(&quot;li&quot;).siblings(&quot;li:has(ul)&quot;).children(&quot;a&quot;).css({background:&quot;url(list.gif) no-repeat left center&quot;})
+                                            .end().find(&quot;li:has(ul)&quot;).children(&quot;a&quot;).css({background:&quot;url(list.gif) no-repeat left center&quot;});
+                                }
+                                $(this).css({background:&quot;url(clist.png) no-repeat left center&quot;});
+//                            return false;
+                            }else{
+                                $(this).next(&quot;ul&quot;).slideUp(&quot;normal&quot;);
+//不用toggle()的原因是为了在收缩菜单的时候同时也将该菜单的下级菜单以后的所有元素都隐藏
+                                $(this).css({background:&quot;url(list.gif) no-repeat left center&quot;});
+                                $(this).next(&quot;ul&quot;).children(&quot;li&quot;).find(&quot;ul&quot;).fadeOut(&quot;normal&quot;);
+                                $(this).next(&quot;ul&quot;).find(&quot;li:has(ul)&quot;).children(&quot;a&quot;).css({background:&quot;url(list.gif) no-repeat left center&quot;});
+//                            return false;
+                            }
+                        });
+            }
+        }
+    });
+&lt;/script&gt;
+&lt;body&gt;
+    &lt;div class=&quot;orgMenu&quot; style=&quot;clear: both&quot;&gt;
+        &lt;ul&gt;
+            &lt;li id=&quot;orgMenu&quot;&gt;
+                &lt;a href=&quot;#&quot; style=&quot;font-size: 16px;font-weight: bolder&quot;&gt;
+                    组织列表&lt;/a&gt;
+                &lt;ul class=&apos;child&apos;&gt;&lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -110,7 +237,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/03/16/NotepadUse/" data-title="Notepad++启动时提示load langs xml failed错误解决 | xiaoqi‘s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/03/24/jqAddDynaminMenu/" data-title="jQuery动态添加树形结构菜单 Demo | xiaoqi‘s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -119,19 +246,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/16/PhoneGap-ionic/" title="PhoneGap+ionic（一）">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  PhoneGap+ionic（一）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/09/hexoSimpleUse/"  title="hexo的简单使用">
+<a href="/2016/03/23/hello-world/"  title="Hello World">
  <strong>NEXT:</strong><br/> 
- <span>hexo的简单使用
+ <span>Hello World
 </span>
 </a>
 </div>
