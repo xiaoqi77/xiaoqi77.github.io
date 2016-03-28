@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | xiaoqi‘s Blog</title>
+    <title>jquery取得select选择的文本与值 | xiaoqi‘s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="xiaoqi">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
-More info: Writing">
+    <meta name="description" content="jquery获取select选择的文本与值获取select ：获取select 选中的 text :    $(“#ddlregtype”).find(“option:selected”).text();
+获取select选中的 value:    $(“#ddlregtype “).val();
+">
     
     
     
@@ -67,15 +67,15 @@ More info: Writing">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/23/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2016/03/28/jquery-selected/" title="jquery取得select选择的文本与值" itemprop="url">jquery取得select选择的文本与值</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="xiaoqi">xiaoqi</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-03-23T06:02:55.937Z" itemprop="datePublished">2016-03-23 14:02:55</time>
-    更新日期:<time datetime="2016-03-09T08:53:58.224Z" itemprop="dateModified">2016-03-09 16:53:58</time>
+    <time datetime="2016-03-28T02:54:34.000Z" itemprop="datePublished">2016-03-28 10:54:34</time>
+    更新日期:<time datetime="2016-03-28T06:30:11.469Z" itemprop="dateModified">2016-03-28 14:30:11</time>
     
   </p>
 </header>
@@ -84,33 +84,96 @@ More info: Writing">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a><br><a id="more"></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-  
+		<p>jquery获取select选择的文本与值<br>获取select ：<br>获取select 选中的 text :<br>    $(“#ddlregtype”).find(“option:selected”).text();</p>
+<p>获取select选中的 value:<br>    $(“#ddlregtype “).val();</p>
+<p>获取select选中的索引:<br>    $(“#ddlregtype “).get(0).selectedindex;</p>
+<p>设置select:<br>设置select 选中的索引：<br>    $(“#ddlregtype “).get(0).selectedindex=index;//index为索引值</p>
+<p>设置select 选中的value：<br>    $(“#ddlregtype “).attr(“value”,”normal“);<br>    $(“#ddlregtype “).val(“normal”);<br>    $(“#ddlregtype “).get(0).value = value;</p>
+<p>设置select 选中的text:</p>
+<pre><code>var count=$(&quot;#ddlregtype option&quot;).length;
+  for(var i=0;i&lt;count;i++)
+     {           if($(&quot;#ddlregtype &quot;).get(0).options[i].text == text)
+        {
+            $(&quot;#ddlregtype &quot;).get(0).options[i].selected = true;
+            break;
+        }
+    }
+$(&quot;#select_id option[text=&apos;jquery&apos;]&quot;).attr(&quot;selected&quot;, true);
+</code></pre><p>设置select option项:</p>
+<pre><code>$(&quot;#select_id&quot;).append(&quot;&lt;option value=&apos;value&apos;&gt;text&lt;/option&gt;&quot;);  //添加一项option
+$(&quot;#select_id&quot;).prepend(&quot;&lt;option value=&apos;0&apos;&gt;请选择&lt;/option&gt;&quot;); //在前面插入一项option
+$(&quot;#select_id option:last&quot;).remove(); //删除索引值最大的option
+$(&quot;#select_id option[index=&apos;0&apos;]&quot;).remove();//删除索引值为0的option
+$(&quot;#select_id option[value=&apos;3&apos;]&quot;).remove(); //删除值为3的option
+$(&quot;#select_id option[text=&apos;4&apos;]&quot;).remove(); //删除text值为4的option
+</code></pre><p>清空 select:</p>
+<pre><code>$(&quot;#ddlregtype &quot;).empty();
+</code></pre><p>工作需要，要获得两个表单中的值。如图：</p>
+<p>如何获得从左边选择框添加到右边选择框中的值？我想了想用网页特效可以获得，这里用了比较流行的jquery。<br>js代码如下：</p>
+<pre><code>//获取所有属性值 var item = $(&quot;#select1&quot;).val();
+$(function(){
+  $(&apos;#select1&apos;).each(  //获得select1的所有值
+     function(){
+        $(&apos;button&apos;).click(function(){
+            alert($(&apos;#select2&apos;).val());  //获得select2中的select1值
+        });
+     });
+})
+&lt;/script&gt;
+</code></pre><p>值得注意的是，不能直接写成</p>
+<pre><code>$(function(){
+  $(&apos;#select2&apos;).each(  //获得select1的所有值，因为前面讲选项从左边添加到右边，jquery其实并没有真正将值从左边传到右边。
+     function(){
+        $(&apos;button&apos;).click(function(){
+            alert($(this).val());  //获得select2中的select1值
+        });
+     });
+})
+</code></pre><p>html：<br>    <div class="centent"><br>            <select multiple="multiple" id="select1" name="dd" style="width:100px;height:160px;"><br>                <option value="1">选项1</option><br>                <option value="2">选项2</option><br>                <option value="3">选项3</option><br>                <option value="4">选项4</option><br>                <option value="5">选项5</option><br>                <option value="6">选项6</option><br>                <option value="7">选项7</option><br>            </select><br>            <div><br>                <span id="add">选中添加到右边&gt;&gt;</span><br>                <span id="add_all">全部添加到右边&gt;&gt;</span><br>            </div><br>        </div><br>        <div class="centent"><br>            <select multiple="multiple" id="select2" name="sel" style="width: 100px;height:160px;"><br>            </select><br>            <div><br>                <span id="remove">&lt;&lt;选中删除到左边</span><br>                <span id="remove_all">&lt;&lt;全部删除到左边</span><br>            </div><br>        </div></p>
+<p>使用JQuery，Ajax调用动态填充Select的option选项</p>
+<pre><code>//绑定ClassLevel1单击事件
+    $(&quot;#ClassLevel1&quot;).change(function () {
+        var id = $(&quot;#ClassLevel1&quot;).val();
+        var level2 = $(&quot;#ClassLevel2&quot;);
+        level2.empty();
+        $(&quot;#ClassLevel3&quot;).hide();
+        $.ajax({
+            url: &quot;./askCommon.ashx?action=getclasslevel&amp;pid=&quot; + id,
+            data: { &quot;type&quot;: &quot;ajax&quot; },
+            datatype: &quot;json&quot;,
+            type: &quot;get&quot;,
+            success: function (data) {
+                var json = eval_r(data);
+                for (var ind in json) {
+                    level2.append($(&quot;&lt;option value=&apos;&quot; + json[ind].id + &quot;&apos;&gt;&quot; + json[ind].typename + &quot;&lt;/option&gt;&quot;));
+                }
+
+            }
+        });
+    })
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/first/">first</a>
+  <span></span> <a href="/tags/tech/">tech</a>
   </div>
 
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/tech/">tech</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/03/23/hello-world/" data-title="Hello World | xiaoqi‘s Blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/03/28/jquery-selected/" data-title="jquery取得select选择的文本与值 | xiaoqi‘s Blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -119,19 +182,11 @@ More info: Writing">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/24/jqAddDynaminMenu/" title="jQuery动态添加树形结构菜单 Demo">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  jQuery动态添加树形结构菜单 Demo</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/22/foxmail/"  title="foxmail 安装记录">
+<a href="/2016/03/24/jqAddDynaminMenu/"  title="jQuery动态添加树形结构菜单 Demo">
  <strong>NEXT:</strong><br/> 
- <span>foxmail 安装记录
+ <span>jQuery动态添加树形结构菜单 Demo
 </span>
 </a>
 </div>
@@ -148,7 +203,7 @@ More info: Writing">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">
